@@ -1,111 +1,668 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Punjab Politix - One-Stop Election Management Solution</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #FFD700;
-            margin: 0;
-            padding: 0;
-            color: #6D0019;
-        }
-        header {
-            background-color: #6D0019;
-            color: white;
-            padding: 20px;
-            font-size: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        header img {
-            height: 100px;
-            margin-right: 20px;
-        }
-        .container {
-            padding: 20px;
-        }
-        .button {
-            display: inline-block;
-            padding: 15px 25px;
-            font-size: 18px;
-            font-weight: bold;
-            background: #FF8C00;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
-        section {
-            padding: 40px 20px;
-            background: white;
-            margin: 20px auto;
-            width: 80%;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: left;
-        }
-        footer {
-            background: #6D0019;
-            color: white;
-            padding: 10px;
-            position: relative;
-            width: 100%;
-            bottom: 0;
-            text-align: center;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Punjab Politix — Vidhan Sabha Election Management | ਚੋਣ ਪ੍ਰਬੰਧਨ ਸੇਵਾਵਾਂ</title>
+<meta name="description" content="Punjab Politix — Expert election management for Punjab Vidhan Sabha elections. Booth management, digital campaigns, field teams & more. Since 2013. Call +91 9417900040">
+<meta name="keywords" content="Punjab Vidhan Sabha election, election management Punjab, ਚੋਣ ਪ੍ਰਬੰਧਨ, booth management, political campaign Punjab, election strategy">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Mukta:wght@300;400;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+:root {
+  --saffron: #E05C10;
+  --navy: #080F1E;
+  --card: #0D1828;
+  --card2: #111F35;
+  --gold: #C08C20;
+  --cream: #F4EDD8;
+  --muted: #6E7A96;
+  --green: #1A8C4E;
+  --border: rgba(224,92,16,0.18);
+  --border-soft: rgba(244,237,216,0.08);
+}
+body { font-family: 'Mukta', sans-serif; background: var(--navy); color: var(--cream); overflow-x: hidden; line-height: 1.6; }
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--navy); }
+::-webkit-scrollbar-thumb { background: var(--saffron); border-radius: 3px; }
+
+/* ANNOUNCEMENT */
+.announcement {
+  background: linear-gradient(90deg, var(--saffron), #c04800);
+  padding: 0.55rem 5vw; text-align: center;
+  font-size: 0.82rem; font-weight: 600; letter-spacing: 0.04em; color: #fff; position: relative; z-index: 300;
+}
+.announcement span { opacity: 0.7; margin: 0 0.6rem; }
+
+/* NAV */
+nav {
+  position: sticky; top: 0; z-index: 200;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1rem 5vw;
+  background: rgba(8,15,30,0.97); backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 900; color: var(--cream); text-decoration: none; }
+.nav-logo span { color: var(--saffron); }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a { color: var(--muted); text-decoration: none; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; }
+.nav-links a:hover { color: var(--saffron); }
+.nav-cta { display: flex; align-items: center; gap: 0.4rem; background: var(--green); color: #fff; padding: 0.6rem 1.3rem; border-radius: 3px; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; }
+.nav-cta:hover { background: #147a42; transform: translateY(-1px); }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+.hamburger span { width: 22px; height: 2px; background: var(--cream); border-radius: 2px; }
+.mobile-nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: rgba(8,15,30,0.99); border-bottom: 1px solid var(--border); padding: 1.5rem 5vw 2rem; flex-direction: column; gap: 1rem; }
+.mobile-nav.open { display: flex; }
+.mobile-nav a { color: var(--muted); text-decoration: none; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.5rem 0; border-bottom: 1px solid var(--border-soft); transition: color 0.2s; }
+.mobile-nav a:hover { color: var(--saffron); }
+.mob-cta { display: flex !important; align-items: center; justify-content: center; gap: 0.5rem; background: var(--green) !important; color: #fff !important; padding: 0.8rem !important; border-radius: 3px; font-weight: 700 !important; font-size: 0.88rem !important; letter-spacing: 0.06em !important; text-transform: uppercase !important; border: none !important; margin-top: 0.5rem; }
+
+/* HERO */
+.hero { min-height: calc(100vh - 88px); display: grid; grid-template-columns: 1.15fr 0.85fr; align-items: center; padding: 5rem 5vw 4rem; position: relative; overflow: hidden; gap: 3rem; }
+.hero-bg { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 70% 60% at 72% 48%, rgba(224,92,16,0.11) 0%, transparent 65%), radial-gradient(ellipse 45% 45% at 10% 85%, rgba(192,140,32,0.07) 0%, transparent 60%); }
+.hero-grid { position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(rgba(224,92,16,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(224,92,16,0.04) 1px, transparent 1px); background-size: 52px 52px; mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 30%, transparent 100%); }
+.hero-left { position: relative; z-index: 2; }
+.hero-badge { display: inline-flex; align-items: center; gap: 0.6rem; background: rgba(224,92,16,0.12); border: 1px solid rgba(224,92,16,0.3); border-radius: 100px; padding: 0.35rem 0.9rem 0.35rem 0.5rem; margin-bottom: 1.8rem; }
+.badge-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--saffron); animation: pulse-dot 2s infinite; }
+@keyframes pulse-dot { 0%,100%{box-shadow:0 0 0 0 rgba(224,92,16,0.4)} 50%{box-shadow:0 0 0 6px rgba(224,92,16,0)} }
+.badge-text { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--saffron); }
+.hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 4vw, 4rem); font-weight: 900; line-height: 1.06; color: var(--cream); margin-bottom: 0.6rem; }
+.hero-title .hl { color: var(--saffron); position: relative; }
+.hero-title .hl::after { content: ''; position: absolute; bottom: 1px; left: 0; right: 0; height: 3px; background: var(--gold); border-radius: 2px; }
+.hero-pun { font-size: clamp(1rem, 1.6vw, 1.3rem); font-weight: 600; color: rgba(244,237,216,0.5); margin-bottom: 1.5rem; }
+.hero-desc { font-size: 1rem; font-weight: 300; line-height: 1.78; color: rgba(244,237,216,0.65); max-width: 500px; margin-bottom: 2.5rem; }
+.hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn-call { display: inline-flex; align-items: center; gap: 0.6rem; background: var(--green); color: #fff; padding: 0.9rem 1.8rem; border-radius: 3px; font-weight: 700; font-size: 0.9rem; letter-spacing: 0.05em; text-transform: uppercase; text-decoration: none; transition: all 0.22s; }
+.btn-call:hover { background: #147a42; transform: translateY(-2px); box-shadow: 0 10px 28px rgba(26,140,78,0.3); }
+.btn-wa { display: inline-flex; align-items: center; gap: 0.6rem; background: #25D366; color: #fff; padding: 0.9rem 1.8rem; border-radius: 3px; font-weight: 700; font-size: 0.9rem; letter-spacing: 0.05em; text-transform: uppercase; text-decoration: none; transition: all 0.22s; }
+.btn-wa:hover { background: #1eb558; transform: translateY(-2px); box-shadow: 0 10px 28px rgba(37,211,102,0.25); }
+.hero-stats { display: flex; gap: 2.5rem; margin-top: 3.5rem; padding-top: 3rem; border-top: 1px solid var(--border-soft); flex-wrap: wrap; }
+.stat-n { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; color: var(--saffron); line-height: 1; }
+.stat-l { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); margin-top: 0.25rem; }
+
+/* HERO VISUAL */
+.hero-right { position: relative; z-index: 2; display: flex; justify-content: center; }
+.visual-box { position: relative; width: 320px; height: 320px; flex-shrink: 0; }
+.v-ring { position: absolute; border-radius: 50%; border: 1px solid rgba(224,92,16,0.2); animation: vspin linear infinite; }
+.v-ring-1 { inset: 0; animation-duration: 32s; }
+.v-ring-2 { inset: 26px; animation-duration: 20s; animation-direction: reverse; border-color: rgba(192,140,32,0.15); }
+.v-ring-3 { inset: 52px; animation-duration: 44s; }
+@keyframes vspin { to { transform: rotate(360deg); } }
+.v-dot { position: absolute; width: 7px; height: 7px; background: var(--saffron); border-radius: 50%; top: -3.5px; left: calc(50% - 3.5px); box-shadow: 0 0 10px rgba(224,92,16,0.7); }
+.v-center { position: absolute; inset: 76px; border-radius: 50%; background: linear-gradient(140deg, rgba(224,92,16,0.15), rgba(192,140,32,0.07)); border: 1.5px solid rgba(224,92,16,0.4); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 3px; }
+.vc-main { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 900; line-height: 1; }
+.vc-sub { font-family: 'Barlow Condensed', sans-serif; font-size: 0.58rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--saffron); }
+.vc-yr { font-size: 0.65rem; color: var(--muted); letter-spacing: 0.06em; }
+.float-tag { position: absolute; background: var(--card2); border: 1px solid var(--border); border-radius: 6px; padding: 0.5rem 0.8rem; font-size: 0.72rem; font-weight: 600; white-space: nowrap; animation: float 4s ease-in-out infinite; }
+.ft-1 { top: 20px; right: -10px; animation-delay: 0s; }
+.ft-2 { bottom: 40px; left: -20px; animation-delay: 1.4s; }
+.ft-3 { bottom: 0; right: 10px; animation-delay: 0.7s; color: #25D366; border-color: rgba(37,211,102,0.3); }
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+
+/* TRUST BAR */
+.trust-bar { background: rgba(224,92,16,0.07); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 0.9rem 5vw; display: flex; align-items: center; gap: 2rem; overflow: hidden; }
+.tb-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--saffron); white-space: nowrap; flex-shrink: 0; }
+.tb-sep { width: 1px; height: 18px; background: var(--border); flex-shrink: 0; }
+.tb-items { display: flex; gap: 2.5rem; overflow: hidden; mask-image: linear-gradient(90deg, transparent, black 6%, black 94%, transparent); }
+.tb-item { display: flex; align-items: center; gap: 0.45rem; font-size: 0.78rem; font-weight: 500; color: var(--muted); white-space: nowrap; }
+.tb-item::before { content: '✦'; color: var(--gold); font-size: 0.55rem; }
+
+/* SECTIONS */
+.section { padding: 5.5rem 5vw; }
+.section.alt { background: rgba(13,24,40,0.5); border-top: 1px solid var(--border-soft); border-bottom: 1px solid var(--border-soft); }
+.sec-eye { display: inline-flex; align-items: center; gap: 0.6rem; font-family: 'Barlow Condensed', sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--saffron); margin-bottom: 0.8rem; }
+.sec-eye::before { content: ''; width: 22px; height: 2px; background: var(--saffron); flex-shrink: 0; }
+.sec-h { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 900; line-height: 1.1; color: var(--cream); margin-bottom: 0.6rem; }
+.sec-p { font-size: 0.95rem; font-weight: 300; color: var(--muted); line-height: 1.75; max-width: 520px; margin-bottom: 0.4rem; }
+.sec-pun { font-size: 0.85rem; color: rgba(110,122,150,0.6); margin-bottom: 3rem; }
+
+/* SERVICES */
+.services-wrap { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1px; background: rgba(224,92,16,0.1); border: 1px solid rgba(224,92,16,0.1); }
+.svc { background: var(--card); padding: 2.2rem 1.8rem; position: relative; overflow: hidden; transition: background 0.25s; }
+.svc::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--saffron), var(--gold)); transform: scaleX(0); transform-origin: left; transition: transform 0.32s; }
+.svc:hover { background: #131f33; }
+.svc:hover::after { transform: scaleX(1); }
+.svc-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; color: rgba(224,92,16,0.15); line-height: 1; margin-bottom: 0.5rem; }
+.svc-icon { font-size: 1.6rem; margin-bottom: 0.6rem; display: block; }
+.svc-title { font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--cream); margin-bottom: 0.2rem; }
+.svc-pun { font-size: 0.8rem; color: rgba(244,237,216,0.4); margin-bottom: 0.6rem; }
+.svc-desc { font-size: 0.85rem; font-weight: 300; color: var(--muted); line-height: 1.65; }
+
+/* ELECTION FOCUS */
+.focus-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+.focus-cards { display: flex; flex-direction: column; gap: 1rem; }
+.focus-card { background: var(--card); border: 1px solid var(--border-soft); border-left: 3px solid var(--saffron); padding: 1.4rem 1.5rem; border-radius: 0 3px 3px 0; transition: border-left-color 0.2s, background 0.2s; }
+.focus-card:hover { border-left-color: var(--gold); background: var(--card2); }
+.fc-title { font-family: 'Barlow Condensed', sans-serif; font-size: 0.92rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cream); margin-bottom: 0.2rem; }
+.fc-pun { font-size: 0.75rem; color: rgba(244,237,216,0.35); margin-bottom: 0.5rem; }
+.fc-desc { font-size: 0.83rem; font-weight: 300; color: var(--muted); line-height: 1.6; }
+.focus-right { display: flex; flex-direction: column; gap: 1.5rem; }
+.focus-quote { background: linear-gradient(135deg, rgba(224,92,16,0.1), rgba(192,140,32,0.06)); border: 1px solid var(--border); border-radius: 4px; padding: 2rem; position: relative; }
+.focus-quote::before { content: '"'; position: absolute; top: 0.5rem; right: 1.5rem; font-family: 'Playfair Display', serif; font-size: 5rem; line-height: 1; color: rgba(224,92,16,0.15); }
+.fq-text { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-style: italic; line-height: 1.65; color: var(--cream); margin-bottom: 0.6rem; }
+.fq-pun { font-size: 0.88rem; color: rgba(244,237,216,0.45); margin-bottom: 0.8rem; }
+.fq-attr { font-size: 0.75rem; color: var(--muted); font-weight: 500; letter-spacing: 0.04em; }
+.focus-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.fm { background: var(--card); border: 1px solid var(--border-soft); border-radius: 4px; padding: 1.3rem; text-align: center; }
+.fm-n { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; color: var(--saffron); line-height: 1; }
+.fm-l { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); margin-top: 0.3rem; }
+
+/* WHY */
+.why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.why-card { background: var(--card); border: 1px solid var(--border-soft); border-radius: 4px; padding: 2rem 1.6rem; transition: border-color 0.25s, transform 0.25s; }
+.why-card:hover { border-color: var(--border); transform: translateY(-4px); }
+.why-ico { font-size: 1.8rem; margin-bottom: 1rem; display: block; }
+.why-title { font-family: 'Barlow Condensed', sans-serif; font-size: 0.95rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cream); margin-bottom: 0.2rem; }
+.why-pun { font-size: 0.75rem; color: rgba(244,237,216,0.35); margin-bottom: 0.6rem; }
+.why-desc { font-size: 0.83rem; font-weight: 300; color: var(--muted); line-height: 1.65; }
+
+/* PROCESS */
+.process-steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; position: relative; }
+.process-steps::before { content: ''; position: absolute; top: 32px; left: 10%; right: 10%; height: 1px; background: linear-gradient(90deg, transparent, var(--saffron), transparent); }
+.step { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 0.5rem; }
+.step-num { width: 64px; height: 64px; border-radius: 50%; background: var(--card); border: 2px solid var(--saffron); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 900; color: var(--saffron); margin-bottom: 1rem; position: relative; z-index: 1; transition: background 0.2s; }
+.step:hover .step-num { background: rgba(224,92,16,0.12); }
+.step-title { font-family: 'Barlow Condensed', sans-serif; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--cream); margin-bottom: 0.2rem; }
+.step-pun { font-size: 0.7rem; color: rgba(244,237,216,0.35); margin-bottom: 0.4rem; }
+.step-desc { font-size: 0.78rem; font-weight: 300; color: var(--muted); line-height: 1.5; }
+
+/* CTA */
+.cta-section { background: linear-gradient(135deg, rgba(224,92,16,0.13), rgba(192,140,32,0.06)); border-top: 1px solid var(--border); padding: 5.5rem 5vw; text-align: center; position: relative; overflow: hidden; }
+.cta-section::before { content: 'ਜਿੱਤੋ'; position: absolute; top: -2rem; right: 5vw; font-family: 'Playfair Display', serif; font-size: 12rem; font-weight: 900; color: rgba(224,92,16,0.04); pointer-events: none; user-select: none; line-height: 1; }
+.cta-eye { display: inline-flex; align-items: center; gap: 0.7rem; font-family: 'Barlow Condensed', sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--saffron); margin-bottom: 1rem; }
+.cta-eye::before, .cta-eye::after { content: ''; width: 22px; height: 2px; background: var(--saffron); }
+.cta-h { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 900; color: var(--cream); margin-bottom: 0.5rem; }
+.cta-pun { font-size: 1.1rem; color: rgba(244,237,216,0.45); margin-bottom: 1.2rem; }
+.cta-sub { font-size: 0.97rem; font-weight: 300; color: var(--muted); max-width: 480px; margin: 0 auto 2.5rem; line-height: 1.75; }
+.cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.cta-phone { font-size: 0.82rem; color: var(--muted); margin-top: 1.5rem; }
+.cta-phone strong { color: var(--cream); }
+
+/* CONTACT */
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+.contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+.ci-item { display: flex; align-items: flex-start; gap: 1rem; }
+.ci-ico { width: 42px; height: 42px; border-radius: 3px; background: rgba(224,92,16,0.1); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+.ci-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.2rem; }
+.ci-val { font-size: 0.95rem; font-weight: 600; color: var(--cream); text-decoration: none; transition: color 0.2s; display: block; }
+.ci-val:hover { color: var(--saffron); }
+.social-row { display: flex; gap: 0.8rem; margin-top: 0.5rem; }
+.soc-btn { display: flex; align-items: center; gap: 0.5rem; background: var(--card); border: 1px solid var(--border-soft); border-radius: 3px; padding: 0.6rem 1rem; color: var(--muted); text-decoration: none; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; transition: all 0.2s; }
+.soc-btn:hover { border-color: var(--saffron); color: var(--saffron); }
+.contact-action { background: var(--card); border: 1px solid var(--border); border-radius: 4px; padding: 2.5rem 2rem; }
+.ca-h { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 900; margin-bottom: 0.3rem; }
+.ca-pun { font-size: 0.82rem; color: rgba(244,237,216,0.35); margin-bottom: 1.5rem; }
+.ca-btns { display: flex; flex-direction: column; gap: 1rem; }
+.ca-btn-call { display: flex; align-items: center; justify-content: center; gap: 0.6rem; background: var(--green); color: #fff; padding: 1rem; border-radius: 3px; font-weight: 700; font-size: 0.92rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; transition: all 0.22s; }
+.ca-btn-call:hover { background: #147a42; transform: translateY(-2px); box-shadow: 0 8px 22px rgba(26,140,78,0.28); }
+.ca-btn-wa { display: flex; align-items: center; justify-content: center; gap: 0.6rem; background: #25D366; color: #fff; padding: 1rem; border-radius: 3px; font-weight: 700; font-size: 0.92rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; transition: all 0.22s; }
+.ca-btn-wa:hover { background: #1eb558; transform: translateY(-2px); box-shadow: 0 8px 22px rgba(37,211,102,0.25); }
+.ca-note { font-size: 0.75rem; color: var(--muted); text-align: center; margin-top: 0.8rem; line-height: 1.5; }
+
+/* FOOTER */
+footer { background: #050b16; border-top: 1px solid var(--border-soft); padding: 3rem 5vw 1.5rem; }
+.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; padding-bottom: 2.5rem; border-bottom: 1px solid var(--border-soft); margin-bottom: 1.5rem; }
+.footer-logo { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 900; color: var(--cream); text-decoration: none; display: block; margin-bottom: 0.7rem; }
+.footer-logo span { color: var(--saffron); }
+.footer-tagline { font-size: 0.82rem; color: var(--muted); font-weight: 300; line-height: 1.65; max-width: 280px; }
+.footer-col-h { font-family: 'Barlow Condensed', sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--saffron); margin-bottom: 1rem; }
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+.footer-links a { color: var(--muted); text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
+.footer-links a:hover { color: var(--cream); }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+.footer-copy { font-size: 0.75rem; color: var(--muted); }
+
+/* WA FAB */
+.wa-fab { position: fixed; bottom: 2rem; right: 2rem; z-index: 999; width: 58px; height: 58px; border-radius: 50%; background: #25D366; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 22px rgba(37,211,102,0.4); text-decoration: none; font-size: 1.5rem; animation: wa-pulse 3s infinite; transition: transform 0.2s; }
+.wa-fab:hover { transform: scale(1.1); }
+@keyframes wa-pulse { 0%,100%{box-shadow:0 6px 22px rgba(37,211,102,0.4)} 50%{box-shadow:0 6px 32px rgba(37,211,102,0.65)} }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; padding-top: 3rem; gap: 2rem; }
+  .hero-right { display: none; }
+  .focus-grid { grid-template-columns: 1fr; }
+  .why-grid { grid-template-columns: 1fr 1fr; }
+  .process-steps { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .process-steps::before { display: none; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .nav-cta { display: none; }
+}
+@media (max-width: 600px) {
+  .hero-title { font-size: 2.2rem; }
+  .why-grid, .services-wrap { grid-template-columns: 1fr; }
+  .process-steps { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr; }
+  .hero-stats { gap: 1.2rem; }
+  .focus-metrics { grid-template-columns: 1fr 1fr; }
+  .tb-items { gap: 1.5rem; }
+  .announcement { font-size: 0.72rem; }
+}
+</style>
 </head>
 <body>
-    <header>
-        <img src="logo.png" alt="Punjab Politix Logo">
-        <h1 style="margin: 0 auto;">Welcome to Punjab Politix</h1>
-    </header>
-    
-    <div class="container">
-        <h2>One-Stop Election Management Solution</h2>
-        <p>Providing expert digital strategies and election management services since 2013.</p>
-        <a href="https://your-google-form-link.com" class="button">CONTACT US</a>
+
+<!-- ANNOUNCEMENT BANNER -->
+<div class="announcement">
+  🗳️ Punjab Vidhan Sabha Election — ਅਸੀਂ ਤੁਹਾਡੇ ਨਾਲ ਹਾਂ
+  <span>|</span>
+  Complete Election Management Available Now
+  <span>|</span>
+  📞 +91 94179 00040
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Punjab <span>Politix</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#focus">Vidhan Sabha</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="tel:+919417900040" class="nav-cta">📞 Call Now</a>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#services" onclick="closeMenu()">Services</a>
+    <a href="#focus" onclick="closeMenu()">Vidhan Sabha</a>
+    <a href="#why" onclick="closeMenu()">Why Us</a>
+    <a href="#process" onclick="closeMenu()">Process</a>
+    <a href="#contact" onclick="closeMenu()">Contact</a>
+    <a href="tel:+919417900040" class="mob-cta">📞 Call +91 94179 00040</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-left">
+    <div class="hero-badge">
+      <div class="badge-dot"></div>
+      <span class="badge-text">Now Accepting Punjab Vidhan Sabha Campaigns</span>
     </div>
-    
-    <section id="services">
-        <h2>Our Services</h2>
-        <p>We offer a complete range of election management services, including:</p>
-        <ul>
-            <li><strong>Social Media & Digital Branding:</strong> Strategy, content creation, and political campaign management on digital platforms.</li>
-            <li><strong>Election Field Teams & Booth Management:</strong> Ground-level teams for voter outreach, booth coordination, and campaign execution.</li>
-            <li><strong>Election Strategy & Planning:</strong> Data-driven election strategies, public engagement tactics, and voter influence methods.</li>
-            <li><strong>Election Materials, Graphic Design & Printing:</strong> Posters, banners, flyers, and all promotional materials.</li>
-            <li><strong>Flags, Promotional Materials & Merchandise:</strong> Custom-branded campaign flags, merchandise, and promotional giveaways.</li>
-            <li><strong>Nomination Filing Assistance:</strong> Help with legal documentation, nomination filing, and candidate registration.</li>
-            <li><strong>Expenditure Management & Compliance:</strong> Budget planning, spending reports, and compliance with election commission guidelines.</li>
-            <li><strong>Interaction with Election Commission & Legal Guidance:</strong> Handling legal procedures, election code compliance, and candidate rights protection.</li>
-        </ul>
-    </section>
-    
-    <section id="portfolio">
-        <h2>Our Work</h2>
-        <p>We have worked with numerous politicians, helping them win elections and build strong voter connections.</p>
-        <img src="portfolio-example.jpg" alt="Campaign Work" width="80%">
-    </section>
-    
-    <section id="contact">
-        <h2>Contact Us</h2>
-        <p>Have questions or need our services? Get in touch with us:</p>
-        <p>Email: contact@punjabpolitix.com</p>
-        <p>Phone: +91 9417900040</p>
-        <p>Follow us on social media:</p>
-        <a href="https://www.facebook.com/punjabpolitix" target="_blank">
-            <img src="facebook-icon.png" alt="Facebook" width="40">
-        </a>
-    </section>
-    
-    <footer>
-        <p>&copy; 2024 Punjab Politix. All Rights Reserved.</p>
-    </footer>
+    <h1 class="hero-title">
+      Win Your<br><span class="hl">Election</span><br>With Punjab's<br>Trusted Experts
+    </h1>
+    <p class="hero-pun">ਜਿੱਤ ਸਾਡੀ ਰਣਨੀਤੀ — ਤੁਹਾਡੀ ਮਿਹਨਤ</p>
+    <p class="hero-desc">
+      From booth management to digital campaigns — Punjab Politix delivers complete election management for Vidhan Sabha and all elections across Punjab. Trusted by candidates since 2013.
+    </p>
+    <div class="hero-btns">
+      <a href="tel:+919417900040" class="btn-call">📞 Call Now</a>
+      <a href="https://wa.me/919417900040?text=Hello%20Punjab%20Politix%2C%20I%20need%20election%20management%20services%20for%20Punjab%20Vidhan%20Sabha" target="_blank" class="btn-wa">💬 WhatsApp Us</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-n">10+</div>
+        <div class="stat-l">Years Experience<br>ਸਾਲਾਂ ਦਾ ਤਜ਼ਰਬਾ</div>
+      </div>
+      <div>
+        <div class="stat-n">117</div>
+        <div class="stat-l">Constituencies<br>ਵਿਧਾਨ ਸਭਾ ਹਲਕੇ</div>
+      </div>
+      <div>
+        <div class="stat-n">8+</div>
+        <div class="stat-l">Election Services<br>ਚੋਣ ਸੇਵਾਵਾਂ</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="visual-box">
+      <div class="v-ring v-ring-1"><div class="v-dot"></div></div>
+      <div class="v-ring v-ring-2"></div>
+      <div class="v-ring v-ring-3"></div>
+      <div class="v-center">
+        <span class="vc-main">PP</span>
+        <span class="vc-sub">Punjab Politix</span>
+        <span class="vc-yr">Est. 2013</span>
+      </div>
+      <div class="float-tag ft-1">🗳️ Booth Management</div>
+      <div class="float-tag ft-2">📱 Digital Campaign</div>
+      <div class="float-tag ft-3">✅ All Punjab Districts</div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <span class="tb-label">We Handle</span>
+  <div class="tb-sep"></div>
+  <div class="tb-items">
+    <span class="tb-item">Punjab Vidhan Sabha Elections</span>
+    <span class="tb-item">Lok Sabha Campaigns</span>
+    <span class="tb-item">Panchayat Elections</span>
+    <span class="tb-item">Municipal Corporation Elections</span>
+    <span class="tb-item">By-Elections</span>
+    <span class="tb-item">Party Organisation</span>
+    <span class="tb-item">All Punjab Districts</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="sec-eye">Our Services · ਸਾਡੀਆਂ ਸੇਵਾਵਾਂ</div>
+  <h2 class="sec-h">Everything You Need to Win</h2>
+  <p class="sec-p">From first strategy meeting to election day — we handle it all. No need to go anywhere else.</p>
+  <p class="sec-pun">ਜਿੱਤ ਲਈ ਹਰ ਚੀਜ਼ ਇੱਕ ਥਾਂ</p>
+  <div class="services-wrap">
+    <div class="svc">
+      <span class="svc-icon">📱</span>
+      <div class="svc-num">01</div>
+      <div class="svc-title">Social Media & Digital Branding</div>
+      <div class="svc-pun">ਸੋਸ਼ਲ ਮੀਡੀਆ ਅਤੇ ਡਿਜੀਟਲ ਬ੍ਰਾਂਡਿੰਗ</div>
+      <p class="svc-desc">Strategy, content creation, and political campaign management on Facebook, Instagram, YouTube & WhatsApp groups across all of Punjab.</p>
+    </div>
+    <div class="svc">
+      <span class="svc-icon">🏛️</span>
+      <div class="svc-num">02</div>
+      <div class="svc-title">Booth Management & Field Teams</div>
+      <div class="svc-pun">ਬੂਥ ਪ੍ਰਬੰਧਨ ਅਤੇ ਫੀਲਡ ਟੀਮਾਂ</div>
+      <p class="svc-desc">Ground-level teams for voter outreach, booth coordination, election day management and campaign execution across all constituencies.</p>
+    </div>
+    <div class="svc">
+      <span class="svc-icon">🗺️</span>
+      <div class="svc-num">03</div>
+      <div class="svc-title">Election Strategy & Planning</div>
+      <div class="svc-pun">ਚੋਣ ਰਣਨੀਤੀ ਅਤੇ ਯੋਜਨਾਬੰਦੀ</div>
+      <p class="svc-desc">Data-driven election strategies, voter segmentation, public engagement tactics and constituency-level voter influence methods.</p>
+    </div>
+    <div class="svc">
+      <span class="svc-icon">🖨️</span>
+      <div class="svc-num">04</div>
+      <div class="svc-title">Graphic Design & Printing</div>
+      <div class="svc-pun">ਗ੍ਰਾਫਿਕ ਡਿਜ਼ਾਈਨ ਅਤੇ ਪ੍ਰਿੰਟਿੰਗ</div>
+      <p class="svc-desc">Posters, banners, flyers, pamphlets and all election promotional materials designed and printed to election commission standards.</p>
+    </div>
+    <div class="svc">
+      <span class="svc-icon">🚩</span>
+      <div class="svc-num">05</div>
+      <div class="svc-title">Flags, Merchandise & Giveaways</div>
+      <div class="svc-pun">ਝੰਡੇ, ਮਰਚੰਡਾਈਜ਼ ਅਤੇ ਤੋਹਫ਼ੇ</div>
+      <p class="svc-desc">Custom-branded campaign flags, caps, T-shirts, pens, and all promotional merchandise with your candidate's branding.</p>
+    </div>
+    <div class="svc">
+      <span class="svc-icon">📋</span>
+      <div class="svc-num">06</div>
+      <div class="svc-title">Nomination Filing Assistance</div>
+      <div class="svc-pun">ਨਾਮਜ਼ਦਗੀ ਦਾਖਲ ਕਰਨ ਵਿੱਚ ਮਦਦ</div>
+      <p class="svc-desc">Complete help with legal documentation, nomination forms, affidavit preparation, candidate registration and all official paperwork.</p>
+    </div>
+    <div class="svc">
+      <span class="svc-icon">💰</span>
+      <div class="svc-num">07</div>
+      <div class="svc-title">Expenditure Management</div>
+      <div class="svc-pun">ਚੋਣ ਖਰਚਾ ਪ੍ਰਬੰਧਨ</div>
+      <p class="svc-desc">Budget planning, daily spending reports and full compliance with Punjab Election Commission expenditure guidelines and legal limits.</p>
+    </div>
+    <div class="svc">
+      <span class="svc-icon">⚖️</span>
+      <div class="svc-num">08</div>
+      <div class="svc-title">Legal Guidance & EC Liaison</div>
+      <div class="svc-pun">ਕਾਨੂੰਨੀ ਸੇਧ ਅਤੇ ਚੋਣ ਕਮਿਸ਼ਨ</div>
+      <p class="svc-desc">Handling all legal procedures, election code compliance, candidate rights protection and direct liaison with the Election Commission of India.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ELECTION FOCUS -->
+<section class="section alt" id="focus">
+  <div class="sec-eye">Punjab Vidhan Sabha · ਵਿਧਾਨ ਸਭਾ ਚੋਣਾਂ</div>
+  <h2 class="sec-h">Focused on Punjab Vidhan Sabha</h2>
+  <p class="sec-p">Punjab's next Vidhan Sabha election is approaching. We are ready — and so is your campaign.</p>
+  <p class="sec-pun">ਅਗਲੀਆਂ ਵਿਧਾਨ ਸਭਾ ਚੋਣਾਂ ਲਈ ਤਿਆਰ</p>
+  <div class="focus-grid">
+    <div class="focus-cards">
+      <div class="focus-card">
+        <div class="fc-title">Constituency-Level Operations</div>
+        <div class="fc-pun">ਹਲਕਾ ਪੱਧਰੀ ਕਾਰਜ</div>
+        <p class="fc-desc">We can deploy teams across all 117 Punjab Vidhan Sabha constituencies. Local knowledge, local networks, real results on the ground.</p>
+      </div>
+      <div class="focus-card">
+        <div class="fc-title">Voter List Management</div>
+        <div class="fc-pun">ਵੋਟਰ ਸੂਚੀ ਪ੍ਰਬੰਧਨ</div>
+        <p class="fc-desc">Complete voter list analysis, booth-wise data organisation, and targeted voter outreach planning for your specific constituency.</p>
+      </div>
+      <div class="focus-card">
+        <div class="fc-title">Election Day Full Coverage</div>
+        <div class="fc-pun">ਚੋਣ ਦਿਵਸ ਪੂਰੀ ਕਵਰੇਜ</div>
+        <p class="fc-desc">Booth agents, transport arrangements, voter turnout drives, and real-time coordination on polling day.</p>
+      </div>
+      <div class="focus-card">
+        <div class="fc-title">All Types of Elections</div>
+        <div class="fc-pun">ਸਾਰੀਆਂ ਕਿਸਮਾਂ ਦੀਆਂ ਚੋਣਾਂ</div>
+        <p class="fc-desc">Vidhan Sabha · Lok Sabha · Panchayat · Municipal · By-election — any election, any scale, anywhere in Punjab.</p>
+      </div>
+    </div>
+    <div class="focus-right">
+      <div class="focus-quote">
+        <p class="fq-text">Every election is won before polling day — in the streets, in the data, and in the strategy room.</p>
+        <p class="fq-pun">ਹਰ ਚੋਣ ਵੋਟਿੰਗ ਤੋਂ ਪਹਿਲਾਂ ਜਿੱਤੀ ਜਾਂਦੀ ਹੈ</p>
+        <p class="fq-attr">— Punjab Politix, Est. 2013</p>
+      </div>
+      <div class="focus-metrics">
+        <div class="fm"><div class="fm-n">117</div><div class="fm-l">Vidhan Sabha Seats in Punjab</div></div>
+        <div class="fm"><div class="fm-n">2013</div><div class="fm-l">Year We Started</div></div>
+        <div class="fm"><div class="fm-n">24/7</div><div class="fm-l">Available During Campaign</div></div>
+        <div class="fm"><div class="fm-n">8+</div><div class="fm-l">Types of Services Offered</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="section" id="why">
+  <div class="sec-eye">Why Punjab Politix · ਸਾਨੂੰ ਕਿਉਂ ਚੁਣੋ</div>
+  <h2 class="sec-h">Why Candidates Choose Us</h2>
+  <p class="sec-p">Experience, local knowledge, and complete accountability — from the first call to the last vote counted.</p>
+  <p class="sec-pun">ਤਜ਼ਰਬਾ, ਜਾਣਕਾਰੀ ਅਤੇ ਜ਼ਿੰਮੇਵਾਰੀ</p>
+  <div class="why-grid">
+    <div class="why-card">
+      <span class="why-ico">🏆</span>
+      <div class="why-title">10+ Years Experience</div>
+      <div class="why-pun">੧੦+ ਸਾਲਾਂ ਦਾ ਤਜ਼ਰਬਾ</div>
+      <p class="why-desc">Serving Punjab's political campaigns since 2013. We know the terrain, the voters, and what it takes to win in every district.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-ico">🗺️</span>
+      <div class="why-title">Deep Punjab Knowledge</div>
+      <div class="why-pun">ਪੰਜਾਬ ਦੀ ਡੂੰਘੀ ਜਾਣਕਾਰੀ</div>
+      <p class="why-desc">We understand caste equations, community dynamics, and constituency-level voter behaviour across all of Punjab's districts.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-ico">🔗</span>
+      <div class="why-title">One-Stop Solution</div>
+      <div class="why-pun">ਸਭ ਕੁਝ ਇੱਕ ਥਾਂ</div>
+      <p class="why-desc">Strategy to printing to field teams — everything under one roof. No need to coordinate between multiple vendors.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-ico">📊</span>
+      <div class="why-title">Data-Driven Strategy</div>
+      <div class="why-pun">ਡੇਟਾ ਆਧਾਰਿਤ ਰਣਨੀਤੀ</div>
+      <p class="why-desc">Voter data analysis, booth-level planning, and targeted outreach. Every decision backed by numbers, not guesswork.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-ico">⚡</span>
+      <div class="why-title">Fast & Reliable</div>
+      <div class="why-pun">ਤੇਜ਼ ਅਤੇ ਭਰੋਸੇਯੋਗ</div>
+      <p class="why-desc">Elections don't wait. We work on tight timelines and are available 24/7 during campaign season. Speed and reliability when it matters most.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-ico">🤝</span>
+      <div class="why-title">Full Confidentiality</div>
+      <div class="why-pun">ਪੂਰੀ ਗੁਪਤਤਾ</div>
+      <p class="why-desc">Your campaign strategy stays private. We maintain complete confidentiality for all clients. Trust is the foundation of what we do.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="section alt" id="process">
+  <div class="sec-eye">How It Works · ਕਿਵੇਂ ਕੰਮ ਕਰਦਾ ਹੈ</div>
+  <h2 class="sec-h">From Call to Campaign in 5 Steps</h2>
+  <p class="sec-p">A simple, clear process so you always know what's happening with your campaign.</p>
+  <p class="sec-pun" style="margin-bottom:3.5rem;">ਸਾਫ਼ ਅਤੇ ਸਰਲ ਪ੍ਰਕਿਰਿਆ</p>
+  <div class="process-steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-title">First Call</div>
+      <div class="step-pun">ਪਹਿਲੀ ਕਾਲ</div>
+      <p class="step-desc">Call or WhatsApp us. Tell us your constituency and goals. Free consultation.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-title">Needs Analysis</div>
+      <div class="step-pun">ਲੋੜਾਂ ਦਾ ਵਿਸ਼ਲੇਸ਼ਣ</div>
+      <p class="step-desc">We study your constituency, voter data, and competition to understand exactly what's needed.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-title">Custom Strategy</div>
+      <div class="step-pun">ਕਸਟਮ ਰਣਨੀਤੀ</div>
+      <p class="step-desc">A tailor-made election plan prepared specifically for your seat and your strengths.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-title">Full Execution</div>
+      <div class="step-pun">ਅਮਲ</div>
+      <p class="step-desc">Our teams go to work — field, digital, materials, legal. You focus on connecting with voters.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-title">Victory</div>
+      <div class="step-pun">ਜਿੱਤ</div>
+      <p class="step-desc">Election day management, booth coverage, and result monitoring until the very end.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-eye">Start Today · ਅੱਜ ਸ਼ੁਰੂ ਕਰੋ</div>
+  <h2 class="cta-h">Ready to Win Your Seat?</h2>
+  <p class="cta-pun">ਆਪਣੀ ਸੀਟ ਜਿੱਤਣ ਲਈ ਤਿਆਰ ਹੋ?</p>
+  <p class="cta-sub">The earlier you start, the stronger your campaign. Call Punjab Politix today — free first consultation for all candidates.</p>
+  <div class="cta-btns">
+    <a href="tel:+919417900040" class="btn-call">📞 Call +91 94179 00040</a>
+    <a href="https://wa.me/919417900040?text=Hello%20Punjab%20Politix%2C%20I%20want%20to%20discuss%20election%20management%20for%20Punjab%20Vidhan%20Sabha" target="_blank" class="btn-wa">💬 WhatsApp Now</a>
+  </div>
+  <p class="cta-phone">Or email: <strong>contact@punjabpolitix.com</strong></p>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="sec-eye">Contact Us · ਸੰਪਰਕ ਕਰੋ</div>
+  <h2 class="sec-h">Talk to Punjab Politix</h2>
+  <p class="sec-p">Available 7 days a week. Call, WhatsApp, or email — we respond fast.</p>
+  <p class="sec-pun">ਹਫ਼ਤੇ ਦੇ 7 ਦਿਨ ਉਪਲਬਧ</p>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="ci-item">
+        <div class="ci-ico">📞</div>
+        <div>
+          <div class="ci-label">Phone</div>
+          <a href="tel:+919417900040" class="ci-val">+91 94179 00040</a>
+        </div>
+      </div>
+      <div class="ci-item">
+        <div class="ci-ico">💬</div>
+        <div>
+          <div class="ci-label">WhatsApp</div>
+          <a href="https://wa.me/919417900040" target="_blank" class="ci-val">+91 94179 00040</a>
+        </div>
+      </div>
+      <div class="ci-item">
+        <div class="ci-ico">📧</div>
+        <div>
+          <div class="ci-label">Email</div>
+          <a href="mailto:contact@punjabpolitix.com" class="ci-val">contact@punjabpolitix.com</a>
+        </div>
+      </div>
+      <div class="ci-item">
+        <div class="ci-ico">📍</div>
+        <div>
+          <div class="ci-label">Region Served</div>
+          <span class="ci-val" style="cursor:default;">All of Punjab, India</span>
+        </div>
+      </div>
+      <div class="social-row">
+        <a href="https://www.facebook.com/punjabpolitix" target="_blank" class="soc-btn">👍 Facebook</a>
+        <a href="https://wa.me/919417900040" target="_blank" class="soc-btn">💬 WhatsApp</a>
+      </div>
+    </div>
+    <div class="contact-action">
+      <div class="ca-h">Talk to Us Today</div>
+      <div class="ca-pun">ਅੱਜ ਸਾਡੇ ਨਾਲ ਗੱਲ ਕਰੋ</div>
+      <div class="ca-btns">
+        <a href="tel:+919417900040" class="ca-btn-call">📞 &nbsp;Call +91 94179 00040</a>
+        <a href="https://wa.me/919417900040?text=Hello%20Punjab%20Politix%2C%20I%20need%20election%20management%20services%20for%20Punjab%20Vidhan%20Sabha" target="_blank" class="ca-btn-wa">💬 &nbsp;Chat on WhatsApp</a>
+      </div>
+      <p class="ca-note">ਪਹਿਲੀ ਸਲਾਹ ਮੁਫ਼ਤ · Free first consultation<br>Available 7 days a week · 24/7 during election season</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <a href="#" class="footer-logo">Punjab <span>Politix</span></a>
+      <p class="footer-tagline">One-Stop Election Management for Punjab since 2013. Digital strategy, booth management, field teams, printing, legal guidance and more.<br><br>ਪੰਜਾਬ ਲਈ ਸੰਪੂਰਨ ਚੋਣ ਪ੍ਰਬੰਧਨ ਸੇਵਾ — ੨੦੧੩ ਤੋਂ।</p>
+    </div>
+    <div>
+      <div class="footer-col-h">Services</div>
+      <ul class="footer-links">
+        <li><a href="#services">Social Media & Digital</a></li>
+        <li><a href="#services">Booth Management</a></li>
+        <li><a href="#services">Election Strategy</a></li>
+        <li><a href="#services">Printing & Materials</a></li>
+        <li><a href="#services">Nomination Filing</a></li>
+        <li><a href="#services">Legal Guidance</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-h">Contact</div>
+      <ul class="footer-links">
+        <li><a href="tel:+919417900040">📞 +91 94179 00040</a></li>
+        <li><a href="https://wa.me/919417900040" target="_blank">💬 WhatsApp</a></li>
+        <li><a href="mailto:contact@punjabpolitix.com">📧 contact@punjabpolitix.com</a></li>
+        <li><a href="https://www.facebook.com/punjabpolitix" target="_blank">👍 Facebook</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 Punjab Politix. All Rights Reserved. · ਸਾਰੇ ਅਧਿਕਾਰ ਸੁਰੱਖਿਅਤ · Ludhiana, Punjab</span>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOATING BUTTON -->
+<a href="https://wa.me/919417900040?text=Hello%20Punjab%20Politix%2C%20I%20need%20election%20management%20services" target="_blank" class="wa-fab" title="Chat on WhatsApp">💬</a>
+
+<script>
+function toggleMenu() { document.getElementById('mobileNav').classList.toggle('open'); }
+function closeMenu() { document.getElementById('mobileNav').classList.remove('open'); }
+document.addEventListener('click', function(e) { if (!e.target.closest('nav')) closeMenu(); });
+
+// Scroll reveal
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.svc, .why-card, .step, .focus-card, .fm, .ci-item').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(22px)';
+  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+  obs.observe(el);
+});
+</script>
 </body>
 </html>
