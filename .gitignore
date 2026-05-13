@@ -1,2 +1,3 @@
-# Firebase web SDK secrets (copy from firebase-config.example.js locally)
-rajneetios/store-incharge/firebase-config.js
+# firebase-config.js is tracked so GitHub Pages can serve the Store app.
+# Restrict the Web API key in Google Cloud → Credentials → HTTP referrers
+# (e.g. https://www.punjabpolitix.com/* ).
