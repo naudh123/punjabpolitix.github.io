@@ -1,0 +1,42 @@
+﻿{
+    "framework":  null,
+    "buildCommand":  "",
+    "headers":  [
+                    {
+                        "headers":  [
+                                        {
+                                            "key":  "Cache-Control",
+                                            "value":  "public, max-age=31536000, immutable"
+                                        }
+                                    ],
+                        "source":  "/rajneetios/Admin/assets/(.*)"
+                    }
+                ],
+    "installCommand":  "",
+    "outputDirectory":  ".",
+    "cleanUrls":  true,
+    "trailingSlash":  false,
+    "$schema":  "https://openapi.vercel.sh/vercel.json",
+    "rewrites":  [
+                     {
+                         "destination":  "https://rajneetos-admin-okeyog6hoa-el.a.run.app/api/:path*",
+                         "source":  "/api/:path*"
+                     },
+                     {
+                         "destination":  "https://rajneetos-admin-okeyog6hoa-el.a.run.app/health",
+                         "source":  "/health"
+                     },
+                     {
+                         "destination":  "https://rajneetos-admin-okeyog6hoa-el.a.run.app/openapi.json",
+                         "source":  "/openapi.json"
+                     },
+                     {
+                         "destination":  "https://rajneetos-admin-okeyog6hoa-el.a.run.app/docs",
+                         "source":  "/docs"
+                     },
+                     {
+                         "destination":  "https://rajneetos-admin-okeyog6hoa-el.a.run.app/docs/:path*",
+                         "source":  "/docs/:path*"
+                     }
+                 ]
+}
